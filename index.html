@@ -48,7 +48,7 @@ textarea{resize:vertical;line-height:1.55}
 .metric .n{font-size:22px;font-weight:500;letter-spacing:-.02em}
 .metric .l{font-size:11px;color:var(--host-fg-muted);line-height:1.3}
 .badge{font-size:11px;font-weight:500;padding:2px 8px;border-radius:999px;white-space:nowrap}
-.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
 .chip{font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid var(--host-border);color:var(--host-fg-muted);cursor:pointer;background:transparent;font-family:inherit}
 .chip.on{background:var(--host-fg);color:var(--host-bg);border-color:transparent}
 .focus{border-left:3px solid var(--host-primary);padding-left:14px}
@@ -72,6 +72,23 @@ details summary::-webkit-details-marker{display:none}
 details summary:before{content:"+ "}
 details[open] summary:before{content:"- "}
 code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;background:var(--host-muted);padding:1px 5px;border-radius:4px}
+/* board */
+.grp{margin-bottom:24px}
+.grpHd{display:flex;align-items:center;gap:8px;border-bottom:2px solid var(--host-fg);padding-bottom:4px}
+.grpName{flex:1;border:none;background:transparent;font-size:16px;font-weight:500;padding:2px 0;border-radius:0}
+.grpName:focus{border:none;border-bottom:1px solid var(--host-primary)}
+.grpNote{border:none;background:transparent;color:var(--host-fg-muted);font-size:12px;padding:5px 0;border-radius:0}
+.grpNote:focus{border:none}
+.rrow{display:flex;gap:8px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--host-border)}
+.rbody{flex:1;min-width:0}
+.rname{border:none;background:transparent;padding:0;border-radius:0;font-size:14px}
+.rname:focus{border:none}
+.rnote{border:none;background:transparent;padding:2px 0;border-radius:0;font-size:12px;color:var(--host-fg-muted)}
+.rnote:focus{border:none}
+.rsel{border:none;background:transparent;font-size:11px;color:var(--host-fg-muted);padding:2px 0;width:auto;border-radius:0}
+.addRow{border:none;border-bottom:1px dashed var(--host-border);background:transparent;font-size:13px;padding:7px 0;color:var(--host-fg-muted);border-radius:0}
+.addRow:focus{border:none;border-bottom:1px dashed var(--host-primary)}
+.ibox{border-left:2px solid var(--host-border);padding-left:12px;margin-bottom:10px}
 @media (max-width:520px){.btn{padding:9px 13px}.tab{padding:7px 14px}.chip{padding:6px 12px}input,select,textarea{font-size:16px}.grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
@@ -95,8 +112,8 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;back
     <button class="btn primary" id="capBtn">Capture</button>
   </div>
 
-  <div class="tabs" id="tabs"><button class="tab" data-tab="focus">Focus</button><button class="tab" data-tab="jobs">Applications 2</button><button class="tab" data-tab="library">Reuse library</button><button class="tab" data-tab="routines">Routines</button><button class="tab" data-tab="labels">Labels</button><button class="tab" data-tab="log">Done log</button><button class="tab on" data-tab="phone">Phone</button></div>
-  <div id="panel"><div class="mut" style="margin-bottom:12px">Two minutes of setup and this stops living in a chat window and starts living on your home screen.</div><div class="card"><div style="font-weight:500;margin-bottom:8px">Step 1 · save the app file</div><div class="stack"><button class="btn primary" id="dlApp">Download momentum.html</button><button class="btn" id="cpApp">Copy the code instead</button></div><div class="note" style="margin-top:8px">If the download is blocked by the preview, use copy and paste it into a text editor, then save as momentum.html</div></div><div class="card"><div style="font-weight:500;margin-bottom:8px">Step 2 · put it somewhere your phone can reach</div><div class="step"><div class="num">a</div><div><div style="font-weight:500">Host it (best, about 5 min, free)</div><div class="mut">Make a free GitHub account, create a repository, upload the file, rename it to <code>index.html</code>, then Settings → Pages → deploy from the main branch. You get a URL like <code>yourname.github.io/momentum</code> that works on every device forever.</div></div></div><div class="step"><div class="num">b</div><div><div style="font-weight:500">Or just move the file to your phone</div><div class="mut">Email it to yourself, drop it in Drive, or AirDrop it. On Android, tap it in the Files app and open with Chrome. On iPhone this route is fussier, so prefer hosting.</div></div></div></div><div class="card"><div style="font-weight:500;margin-bottom:8px">Step 3 · make it an icon</div><div class="mut">Open the URL or file on your phone, then: iPhone — Share button, then Add to Home Screen. Android — the three dot menu, then Add to Home screen. It opens full screen with no browser bar.</div></div><div class="card"><div style="font-weight:500;margin-bottom:8px">Moving your data between phone and desktop</div><div class="mut">Each device keeps its own copy. Tap Copy backup on the device you typed it on, then open Restore on the other and paste.</div><div class="stack" style="margin-top:10px"><button class="btn" id="cpBtn2">Copy backup</button><button class="btn" id="resBtn2">Restore from text</button></div></div><div class="card"><div style="font-weight:500;margin-bottom:4px">Editing the code later</div><div class="mut">You will rarely need to. Labels, routines, applications and saved pieces are all editable inside the app. If you ever do want to change the look, open the file in any text editor, edit, and save.</div></div></div>
+  <div class="tabs" id="tabs"><button class="tab" data-tab="focus">Focus</button><button class="tab" data-tab="board">Board</button><button class="tab" data-tab="jobs">Applications 2</button><button class="tab" data-tab="library">Reuse library</button><button class="tab" data-tab="labels">Labels</button><button class="tab" data-tab="log">Done log</button><button class="tab on" data-tab="phone">Phone</button></div>
+  <div id="panel"><div class="mut" style="margin-bottom:12px">You already did this. This tab is here so the file can re-download itself if you ever need it again.</div><div class="card"><div style="font-weight:500;margin-bottom:8px">Get a fresh copy</div><div class="stack"><button class="btn primary" id="dlApp">Download momentum.html</button><button class="btn" id="cpApp">Copy the code instead</button></div><div class="note" style="margin-top:8px">To update your hosted version: copy the code, then on GitHub open index.html, tap the pencil, select all, paste over it, and commit. Never open the file in LibreOffice.</div></div><div class="card"><div style="font-weight:500;margin-bottom:8px">Moving your data between phone and desktop</div><div class="mut">Each device keeps its own copy. Tap Copy backup on the device you typed it on, then open Restore on the other and paste.</div><div class="stack" style="margin-top:10px"><button class="btn" id="cpBtn2">Copy backup</button><button class="btn" id="resBtn2">Restore from text</button></div></div></div>
 
   <datalist id="lblList"><option value="anywhere"></option><option value="desk"></option><option value="kitchen"></option><option value="bedroom"></option><option value="phone"></option><option value="out and about"></option><option value="errands"></option><option value="admin"></option><option value="money"></option><option value="health"></option><option value="writing"></option><option value="interview"></option></datalist>
 </div>
@@ -117,7 +134,7 @@ function diffDays(a,b){return Math.round((new Date(b+'T12:00:00')-new Date(a+'T1
 function seed(){
   var t=todayISO();
   return {
-    labels:DEFAULT_LABELS.map(function(n){return {id:uid(),name:n};}),
+    labels:DEFAULT_LABELS.map(function(n){return {id:uid(),name:n,note:''};}),
     inbox:[],
     jobs:[
       {id:uid(),company:'Northwind logistics',role:'Operations coordinator',stage:'applied',tag:'desk',applied:addDays(t,-9),nextAction:'Follow up with the recruiter',nextDate:addDays(t,2),notes:'Referred by Dana. Mention the scheduling project.'},
@@ -147,17 +164,18 @@ function seed(){
 var S;
 try{var raw=localStorage.getItem(KEY);S=raw?JSON.parse(raw):seed();}catch(e){S=seed();}
 if(!S||!S.routines)S=seed();
-if(!S.labels||!S.labels.length)S.labels=DEFAULT_LABELS.map(function(n){return {id:uid(),name:n};});
+if(!S.labels||!S.labels.length)S.labels=DEFAULT_LABELS.map(function(n){return {id:uid(),name:n,note:''};});
+S.labels.forEach(function(l){if(l.note===undefined)l.note='';});
 S.assets.forEach(function(a){if(a.category===undefined)a.category='';});
 S.jobs.forEach(function(j){if(j.tag===undefined)j.tag='';});
+S.inbox.forEach(function(i){if(i.note===undefined)i.note='';});
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
 
 var tab='focus', ctx='all', focusIdx=0, restoring=false;
 
-function labelNames(){return S.labels.map(function(l){return l.name;});}
 function ensureLabel(name){
   name=String(name||'').trim();if(!name)return;
-  if(!S.labels.some(function(l){return l.name===name;})){S.labels.push({id:uid(),name:name});save();}
+  if(!S.labels.some(function(l){return l.name===name;})){S.labels.push({id:uid(),name:name,note:''});save();}
 }
 function usesOf(name){
   var n=0;
@@ -167,20 +185,8 @@ function usesOf(name){
   S.inbox.forEach(function(i){if(i.ctx===name)n++;});
   return n;
 }
-function usedLabels(){
-  var seen={},out=[];
-  S.routines.forEach(function(r){if(r.context)seen[r.context]=1;});
-  S.assets.forEach(function(a){if(a.category)seen[a.category]=1;});
-  S.jobs.forEach(function(j){if(j.tag)seen[j.tag]=1;});
-  S.inbox.forEach(function(i){if(i.ctx)seen[i.ctx]=1;});
-  S.labels.forEach(function(l){if(seen[l.name])out.push(l.name);});
-  return out;
-}
-
-function dueInfo(r){return {next:addDays(r.lastDone||todayISO(),r.interval||7),over:diffDays(addDays(r.lastDone||todayISO(),r.interval||7),todayISO())};}
+function dueInfo(r){var nx=addDays(r.lastDone||todayISO(),r.interval||7);return {next:nx,over:diffDays(nx,todayISO())};}
 function isDue(r){return dueInfo(r).over>=0;}
-function visible(r){return ctx==='all'||r.context===ctx;}
-
 function logWin(text,kind){
   S.wins.unshift({id:uid(),text:text,kind:kind||'task',at:todayISO()});
   if(S.wins.length>300)S.wins.length=300;
@@ -224,7 +230,7 @@ var tabsEl=document.getElementById('tabs');
 
 function renderTabs(){
   var live=S.jobs.filter(function(j){return j.stage!=='rejected'&&j.stage!=='saved';}).length;
-  var defs=[['focus','Focus'],['jobs','Applications'+(live?' '+live:'')],['library','Reuse library'],['routines','Routines'],['labels','Labels'],['log','Done log'],['phone','Phone']];
+  var defs=[['focus','Focus'],['board','Board'],['jobs','Applications'+(live?' '+live:'')],['library','Reuse library'],['labels','Labels'],['log','Done log'],['phone','Phone']];
   tabsEl.innerHTML=defs.map(function(d){return '<button class="tab'+(tab===d[0]?' on':'')+'" data-tab="'+d[0]+'">'+esc(d[1])+'</button>';}).join('');
 }
 
@@ -233,14 +239,15 @@ function badge(stage){
   return '<span class="badge" style="background:'+SC[stage]+'22;color:'+SC[stage]+'">'+label+'</span>';
 }
 function chipRow(){
-  var u=usedLabels();
+  var u=[];
+  S.labels.forEach(function(l){if(usesOf(l.name)>0)u.push(l.name);});
   return '<div class="chips"><button class="chip'+(ctx==='all'?' on':'')+'" data-ctx="all">everything</button>'
    +u.map(function(c){return '<button class="chip'+(ctx===c?' on':'')+'" data-ctx="'+esc(c)+'">'+esc(c)+'</button>';}).join('')
    +'</div>';
 }
-function labelOpts(sel,blank){
-  var h=(blank?'<option value=""'+(!sel?' selected':'')+'>'+(blank||'')+'</option>':'');
-  return h+S.labels.map(function(l){return '<option'+(sel===l.name?' selected':'')+'>'+esc(l.name)+'</option>';}).join('');
+function labelOpts(sel){
+  return '<option value=""'+(!sel?' selected':'')+'>no label</option>'
+   +S.labels.map(function(l){return '<option'+(sel===l.name?' selected':'')+'>'+esc(l.name)+'</option>';}).join('');
 }
 
 function renderFocus(){
@@ -286,14 +293,65 @@ function renderFocus(){
   if(S.inbox.length){
     h+='<div class="h2">Inbox ('+S.inbox.length+')</div>';
     S.inbox.forEach(function(i){
-      h+='<div class="card tight"><div class="row wrap"><div class="grow">'+esc(i.text)+(i.ctx?' <span class="pill">'+esc(i.ctx)+'</span>':'')+'</div>'
-        +'<div class="stack">'
+      h+='<div class="ibox">'
+        +'<input type="text" class="rname" value="'+esc(i.text)+'" data-f="inbox:'+i.id+':text">'
+        +'<input type="text" class="rnote" placeholder="note" value="'+esc(i.note)+'" data-f="inbox:'+i.id+':note">'
+        +'<div class="stack" style="margin-top:6px">'
+        +'<select class="rsel" data-f="inbox:'+i.id+':ctx">'+labelOpts(i.ctx)+'</select>'
         +'<button class="btn sm" data-act="inbox-to" data-kind="job" data-id="'+i.id+'">to application</button>'
-        +'<button class="btn sm" data-act="inbox-to" data-kind="routine" data-id="'+i.id+'">to routine</button>'
+        +'<button class="btn sm" data-act="inbox-to" data-kind="routine" data-id="'+i.id+'">to board</button>'
         +'<button class="btn sm x" data-act="inbox-del" data-id="'+i.id+'">×</button>'
-        +'</div></div></div>';
+        +'</div></div>';
     });
   }
+  return h;
+}
+
+function renderBoard(){
+  var h='<div class="mut" style="margin-bottom:14px">Each label is a section with its own note. Type in a section to add to it. Everything is editable in place.</div>';
+  h+=chipRow();
+
+  var groups=S.labels.filter(function(l){return ctx==='all'||l.name===ctx;});
+
+  groups.forEach(function(l){
+    var items=S.routines.filter(function(r){return r.context===l.name;}).sort(function(a,b){return dueInfo(b).over-dueInfo(a).over;});
+    h+='<div class="grp">'
+      +'<div class="grpHd"><input class="grpName" value="'+esc(l.name)+'" data-f="labels:'+l.id+':name">'
+      +'<span class="pill">'+items.length+'</span>'
+      +'<button class="btn sm x" data-act="label-del" data-id="'+l.id+'">×</button></div>'
+      +'<input class="grpNote" placeholder="note about this area" value="'+esc(l.note)+'" data-f="labels:'+l.id+':note">';
+    items.forEach(function(r){
+      var d=dueInfo(r);
+      h+='<div class="rrow"><div class="rbody">'
+        +'<input type="text" class="rname" value="'+esc(r.name)+'" data-f="routines:'+r.id+':name">'
+        +'<input type="text" class="rnote" placeholder="note" value="'+esc(r.notes)+'" data-f="routines:'+r.id+':notes">'
+        +'<div class="stack" style="margin-top:3px">'
+        +'<select class="rsel" data-f="routines:'+r.id+':context">'+labelOpts(r.context)+'</select>'
+        +'<label class="pill" style="display:flex;align-items:center;gap:4px">every <input type="number" class="rsel" style="width:46px" value="'+r.interval+'" data-f="routines:'+r.id+':interval">d</label>'
+        +'<span class="'+(d.over>0?'due':'soon')+'">'+(d.over>0?'overdue '+d.over+'d':(d.over===0?'due today':'in '+(-d.over)+'d'))+'</span>'
+        +'</div></div>'
+        +'<button class="btn sm ok" data-act="complete" data-type="routine" data-id="'+r.id+'">Done</button>'
+        +'<button class="btn sm x" data-act="routine-del" data-id="'+r.id+'">×</button>'
+        +'</div>';
+    });
+    h+='<input class="addRow" placeholder="add to '+esc(l.name)+'" data-add="'+l.id+'">'
+      +'</div>';
+  });
+
+  var unlabelled=S.routines.filter(function(r){return !r.context||!S.labels.some(function(l){return l.name===r.context;});});
+  if(unlabelled.length&&ctx==='all'){
+    h+='<div class="grp"><div class="grpHd"><span class="grpName" style="border:none">no label</span><span class="pill">'+unlabelled.length+'</span></div>';
+    unlabelled.forEach(function(r){
+      h+='<div class="rrow"><div class="rbody">'
+        +'<input type="text" class="rname" value="'+esc(r.name)+'" data-f="routines:'+r.id+':name">'
+        +'<input type="text" class="rnote" placeholder="note" value="'+esc(r.notes)+'" data-f="routines:'+r.id+':notes">'
+        +'<select class="rsel" data-f="routines:'+r.id+':context">'+labelOpts(r.context)+'</select>'
+        +'</div><button class="btn sm ok" data-act="complete" data-type="routine" data-id="'+r.id+'">Done</button>'
+        +'<button class="btn sm x" data-act="routine-del" data-id="'+r.id+'">×</button></div>';
+    });
+    h+='</div>';
+  }
+
   return h;
 }
 
@@ -332,7 +390,7 @@ function renderJobs(){
       +'<input type="date" style="width:auto" value="'+esc(j.nextDate)+'" data-f="jobs:'+j.id+':nextDate">'
       +'</div>'
       +(j.nextAction&&j.nextDate?'<div class="'+(late?'due':'soon')+'" style="margin-top:6px">'+(late?'next step is due':'next step '+j.nextDate)+'</div>':'')
-      +'<textarea rows="2" style="margin-top:8px" placeholder="Notes" data-f="jobs:'+j.id+':notes">'+esc(j.notes)+'</textarea>'
+      +'<textarea rows="3" style="margin-top:8px" placeholder="Notes" data-f="jobs:'+j.id+':notes">'+esc(j.notes)+'</textarea>'
       +'</div>';
   });
   return h;
@@ -363,54 +421,22 @@ function renderLibrary(){
   return h;
 }
 
-function renderRoutines(){
-  var h='<div class="mut" style="margin-bottom:10px">Tag each one with where you are when you actually notice it. Then when you are in bed, tap "bedroom" and the fly traps show up in front of you instead of staying a vague guilt feeling.</div>';
-  h+=chipRow();
-  h+='<details><summary>Add a routine</summary><div class="card">'
-    +'<input type="text" id="rName" placeholder="What is it?" style="margin-bottom:8px">'
-    +'<div class="stack" style="margin-bottom:8px"><input list="lblList" id="rCtx" class="grow" placeholder="Label (type a new one and it saves)">'
-    +'<label class="mut" style="display:flex;align-items:center;gap:6px;white-space:nowrap">every <input type="number" id="rInt" value="30" min="1" style="width:70px"> days</label></div>'
-    +'<input type="text" id="rNotes" placeholder="Where is the thing? Why do you forget it?">'
-    +'<div style="margin-top:8px"><button class="btn primary" id="rAdd">Add it</button></div>'
-    +'</div></details>';
-  var list=S.routines.filter(visible).sort(function(a,b){return dueInfo(b).over-dueInfo(a).over;});
-  if(!list.length)h+='<div class="empty">Nothing in this label.</div>';
-  list.forEach(function(r){
-    var d=dueInfo(r);
-    h+='<div class="card tight">'
-      +'<div class="row wrap" style="margin-bottom:6px">'
-      +'<input type="text" class="grow" value="'+esc(r.name)+'" data-f="routines:'+r.id+':name" style="font-weight:500">'
-      +'<button class="btn sm ok" data-act="complete" data-type="routine" data-id="'+r.id+'">Done</button>'
-      +'<button class="btn sm x" data-act="routine-del" data-id="'+r.id+'">×</button>'
-      +'</div>'
-      +'<div class="stack">'
-      +'<select style="width:auto" data-f="routines:'+r.id+':context">'+labelOpts(r.context)+'</select>'
-      +'<label class="mut" style="display:flex;align-items:center;gap:5px">every <input type="number" style="width:64px" value="'+r.interval+'" data-f="routines:'+r.id+':interval"> days</label>'
-      +'<span class="'+(d.over>0?'due':(d.over===0?'due':'soon'))+'">'+(d.over>0?'overdue by '+d.over+' day'+(d.over>1?'s':''):(d.over===0?'due today':'due in '+(-d.over)+' days'))+'</span>'
-      +'</div>'
-      +'<input type="text" style="margin-top:6px" placeholder="Where is it / why you forget" value="'+esc(r.notes)+'" data-f="routines:'+r.id+':notes">'
-      +'</div>';
-  });
-  return h;
-}
-
 function renderLabels(){
-  var h='<div class="mut" style="margin-bottom:12px">Labels are your vocabulary. Anywhere you see a field with a list, you can just type something new and it saves itself. This tab is for tidying up.</div>';
-  h+='<div class="card">'
-    +'<div style="font-weight:500;margin-bottom:8px">Rename one</div>'
-    +'<div class="mut" style="margin-bottom:10px">Rename here and every routine, application, and saved piece using it updates at once. Nothing gets orphaned.</div>';
+  var h='<div class="mut" style="margin-bottom:12px">Labels are sections on your board. Renaming one updates everything using it. Deleting one keeps its items, they just fall into no label.</div>';
+  h+='<div class="card">';
   S.labels.forEach(function(l){
     var n=usesOf(l.name);
-    h+='<div class="row wrap" style="margin-bottom:8px">'
+    h+='<div style="border-bottom:1px solid var(--host-border);padding-bottom:8px;margin-bottom:8px">'
+      +'<div class="row wrap">'
       +'<input type="text" class="grow" value="'+esc(l.name)+'" data-f="labels:'+l.id+':name">'
-      +'<span class="pill">used '+n+' time'+(n===1?'':'s')+'</span>'
+      +'<span class="pill">'+n+' item'+(n===1?'':'s')+'</span>'
       +'<button class="btn sm x" data-act="label-del" data-id="'+l.id+'">×</button>'
+      +'</div>'
+      +'<input type="text" class="rnote" placeholder="note about this area" value="'+esc(l.note)+'" data-f="labels:'+l.id+':note">'
       +'</div>';
   });
   h+='<div class="stack" style="margin-top:4px"><input type="text" id="lNew" class="grow" placeholder="Add a label (e.g. car, garden, night shift)"><button class="btn primary" id="lAdd">Add</button></div>'
     +'</div>';
-  h+='<div class="card"><div style="font-weight:500;margin-bottom:4px">Deleting a label</div>'
-    +'<div class="mut">Deleting never deletes the items. Routines fall back to anywhere, and the rest just lose the tag.</div></div>';
   return h;
 }
 
@@ -427,23 +453,14 @@ function renderLog(){
 }
 
 function renderPhone(){
-  var h='<div class="mut" style="margin-bottom:12px">Two minutes of setup and this stops living in a chat window and starts living on your home screen.</div>';
-  h+='<div class="card"><div style="font-weight:500;margin-bottom:8px">Step 1 · save the app file</div>'
+  var h='<div class="mut" style="margin-bottom:12px">You already did this. This tab is here so the file can re-download itself if you ever need it again.</div>';
+  h+='<div class="card"><div style="font-weight:500;margin-bottom:8px">Get a fresh copy</div>'
    +'<div class="stack"><button class="btn primary" id="dlApp">Download momentum.html</button>'
    +'<button class="btn" id="cpApp">Copy the code instead</button></div>'
-   +'<div class="note" style="margin-top:8px">If the download is blocked by the preview, use copy and paste it into a text editor, then save as momentum.html</div></div>';
-  h+='<div class="card"><div style="font-weight:500;margin-bottom:8px">Step 2 · put it somewhere your phone can reach</div>'
-   +'<div class="step"><div class="num">a</div><div><div style="font-weight:500">Host it (best, about 5 min, free)</div>'
-   +'<div class="mut">Make a free GitHub account, create a repository, upload the file, rename it to <code>index.html</code>, then Settings → Pages → deploy from the main branch. You get a URL like <code>yourname.github.io/momentum</code> that works on every device forever.</div></div></div>'
-   +'<div class="step"><div class="num">b</div><div><div style="font-weight:500">Or just move the file to your phone</div>'
-   +'<div class="mut">Email it to yourself, drop it in Drive, or AirDrop it. On Android, tap it in the Files app and open with Chrome. On iPhone this route is fussier, so prefer hosting.</div></div></div></div>';
-  h+='<div class="card"><div style="font-weight:500;margin-bottom:8px">Step 3 · make it an icon</div>'
-   +'<div class="mut">Open the URL or file on your phone, then: iPhone — Share button, then Add to Home Screen. Android — the three dot menu, then Add to Home screen. It opens full screen with no browser bar.</div></div>';
+   +'<div class="note" style="margin-top:8px">To update your hosted version: copy the code, then on GitHub open index.html, tap the pencil, select all, paste over it, and commit. Never open the file in LibreOffice.</div></div>';
   h+='<div class="card"><div style="font-weight:500;margin-bottom:8px">Moving your data between phone and desktop</div>'
    +'<div class="mut">Each device keeps its own copy. Tap Copy backup on the device you typed it on, then open Restore on the other and paste.</div>'
    +'<div class="stack" style="margin-top:10px"><button class="btn" id="cpBtn2">Copy backup</button><button class="btn" id="resBtn2">Restore from text</button></div></div>';
-  h+='<div class="card"><div style="font-weight:500;margin-bottom:4px">Editing the code later</div>'
-   +'<div class="mut">You will rarely need to. Labels, routines, applications and saved pieces are all editable inside the app. If you ever do want to change the look, open the file in any text editor, edit, and save.</div></div>';
   return h;
 }
 
@@ -460,9 +477,9 @@ function render(){
   }
   var body='';
   if(tab==='focus')body=renderFocus();
+  else if(tab==='board')body=renderBoard();
   else if(tab==='jobs')body=renderJobs();
   else if(tab==='library')body=renderLibrary();
-  else if(tab==='routines')body=renderRoutines();
   else if(tab==='labels')body=renderLabels();
   else if(tab==='phone')body=renderPhone();
   else body=renderLog();
@@ -487,7 +504,7 @@ panel.addEventListener('click',function(e){
     else if(a==='inbox-del'){S.inbox=S.inbox.filter(function(x){return x.id!==id;});save();render();}
     else if(a==='label-del'){
       var lab=S.labels.find(function(x){return x.id===id;});if(!lab)return;
-      S.routines.forEach(function(r){if(r.context===lab.name)r.context='anywhere';});
+      if(!confirm('Delete the label "'+lab.name+'"? Its items stay, they just lose the label.'))return;
       S.jobs.forEach(function(j){if(j.tag===lab.name)j.tag='';});
       S.assets.forEach(function(x){if(x.category===lab.name)x.category='';});
       S.inbox.forEach(function(i){if(i.ctx===lab.name)i.ctx='';});
@@ -502,11 +519,11 @@ panel.addEventListener('click',function(e){
     else if(a==='inbox-to'){
       var item=S.inbox.find(function(x){return x.id===id;});if(!item)return;
       if(b.dataset.kind==='job'){
-        S.jobs.unshift({id:uid(),company:'',role:item.text,stage:'saved',tag:item.ctx||'',applied:'',nextAction:'',nextDate:'',notes:''});
+        S.jobs.unshift({id:uid(),company:'',role:item.text,stage:'saved',tag:item.ctx||'',applied:'',nextAction:'',nextDate:'',notes:item.note||''});
         tab='jobs';
       } else {
-        S.routines.unshift({id:uid(),name:item.text,context:item.ctx||'anywhere',interval:30,lastDone:todayISO(),notes:''});
-        tab='routines';
+        S.routines.unshift({id:uid(),name:item.text,context:item.ctx||'anywhere',interval:30,lastDone:todayISO(),notes:item.note||''});
+        tab='board';
       }
       S.inbox=S.inbox.filter(function(x){return x.id!==id;});
       save();render();
@@ -529,12 +546,6 @@ panel.addEventListener('click',function(e){
     S.assets.unshift({id:uid(),title:ti||'Untitled',category:ca,body:bo});
     save();render();
   }
-  if(e.target.id==='rAdd'){
-    var n=document.getElementById('rName').value.trim();if(!n)return;
-    var cx=document.getElementById('rCtx').value.trim()||'anywhere';ensureLabel(cx);
-    S.routines.unshift({id:uid(),name:n,context:cx,interval:parseInt(document.getElementById('rInt').value,10)||30,lastDone:todayISO(),notes:document.getElementById('rNotes').value.trim()});
-    save();render();
-  }
   if(e.target.id==='wAdd'){
     var w=document.getElementById('wText').value.trim();if(!w)return;
     logWin(w,'manual');save();render();
@@ -550,11 +561,27 @@ panel.addEventListener('click',function(e){
   if(e.target.id==='resGo'){
     try{
       var d=JSON.parse(document.getElementById('resBox').value.trim());
-      if(d&&d.routines){S=d;if(!S.labels||!S.labels.length)S.labels=DEFAULT_LABELS.map(function(n){return {id:uid(),name:n};});save();restoring=false;render();}
+      if(d&&d.routines){S=d;if(!S.labels||!S.labels.length)S.labels=DEFAULT_LABELS.map(function(n){return {id:uid(),name:n,note:''};});
+        S.labels.forEach(function(l){if(l.note===undefined)l.note='';});
+        S.inbox.forEach(function(i){if(i.note===undefined)i.note='';});
+        save();restoring=false;render();}
       else document.getElementById('resMsg').textContent='That does not look like a backup.';
     }catch(err){document.getElementById('resMsg').textContent='Could not read that text.';}
   }
   if(e.target.id==='resCancel'){restoring=false;render();}
+});
+
+/* add-from-section on enter */
+panel.addEventListener('keydown',function(e){
+  var t=e.target;
+  if(e.key==='Enter'&&t.dataset&&t.dataset.add){
+    var v=t.value.trim();if(!v)return;
+    var lab=S.labels.find(function(x){return x.id===t.dataset.add;});
+    if(!lab)return;
+    S.routines.unshift({id:uid(),name:v,context:lab.name,interval:30,lastDone:todayISO(),notes:''});
+    save();render();
+    var again=panel.querySelector('[data-add="'+lab.id+'"]');if(again)again.focus();
+  }
 });
 
 panel.addEventListener('input',function(e){
@@ -584,6 +611,7 @@ panel.addEventListener('change',function(e){
   if(p[0]==='routines'&&p[2]==='context')ensureLabel(rec.context);
   if(p[0]==='jobs'&&p[2]==='tag')ensureLabel(rec.tag);
   if(p[0]==='assets'&&p[2]==='category')ensureLabel(rec.category);
+  if(p[0]==='inbox'&&p[2]==='ctx')ensureLabel(rec.ctx);
   if(p[0]==='jobs'&&p[2]==='stage'){
     if(t.value==='applied'&&!rec.applied)rec.applied=todayISO();
     logWin('Moved '+rec.company+' to '+t.value,'job');
@@ -651,7 +679,7 @@ document.getElementById('resBtn').addEventListener('click',function(){restoring=
 var capInput=document.getElementById('capInput');
 function capture(){
   var v=capInput.value.trim();if(!v)return;
-  S.inbox.unshift({id:uid(),text:v,ctx:document.getElementById('capCtx').value,at:todayISO()});
+  S.inbox.unshift({id:uid(),text:v,note:'',ctx:document.getElementById('capCtx').value,at:todayISO()});
   capInput.value='';save();focusIdx=0;render();
 }
 document.getElementById('capBtn').addEventListener('click',capture);
