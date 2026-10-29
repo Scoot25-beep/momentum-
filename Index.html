@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Momentum</title>
+<meta name="theme-color" content="#3b82f6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Momentum">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%22112%22%20fill%3D%22%233b82f6%22%2F%3E%3Cpath%20d%3D%22M132%20322%20L256%20158%20L380%20322%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%2244%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Ccircle%20cx%3D%22256%22%20cy%3D%22392%22%20r%3D%2230%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%22112%22%20fill%3D%22%233b82f6%22%2F%3E%3Cpath%20d%3D%22M132%20322%20L256%20158%20L380%20322%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%2244%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Ccircle%20cx%3D%22256%22%20cy%3D%22392%22%20r%3D%2230%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E">
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Momentum%22%2C%22short_name%22%3A%22Momentum%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230b0b0d%22%2C%22theme_color%22%3A%22%233b82f6%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520512%2520512%2522%253E%253Crect%2520width%253D%2522512%2522%2520height%253D%2522512%2522%2520rx%253D%2522112%2522%2520fill%253D%2522%25233b82f6%2522%252F%253E%253Cpath%2520d%253D%2522M132%2520322%2520L256%2520158%2520L380%2520322%2522%2520fill%253D%2522none%2522%2520stroke%253D%2522%2523fff%2522%2520stroke-width%253D%252244%2522%2520stroke-linecap%253D%2522round%2522%2520stroke-linejoin%253D%2522round%2522%252F%253E%253Ccircle%2520cx%253D%2522256%2522%2520cy%253D%2522392%2522%2520r%253D%252230%2522%2520fill%253D%2522%2523fff%2522%252F%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%5D%7D">
+<style>:root{--host-bg:#ffffff;--host-fg:#111827;--host-fg-muted:#6b7280;--host-card:#f9fafb;--host-card-fg:#111827;--host-input:#ffffff;--host-muted:#f3f4f6;--host-border:#e5e7eb;--host-border-hover:#d1d5db;--host-primary:#3b82f6;--host-secondary:#f3f4f6;--host-secondary-fg:#111827;--host-success:#22c55e;--host-error:#ef4444}@media (prefers-color-scheme:dark){:root{--host-bg:#0b0b0d;--host-fg:#f4f4f5;--host-fg-muted:#9ca3af;--host-card:#17171a;--host-card-fg:#f4f4f5;--host-input:#1c1c20;--host-muted:#202024;--host-border:#2a2a30;--host-border-hover:#3f3f46;--host-primary:#3b82f6;--host-secondary:#202024;--host-secondary-fg:#f4f4f5;--host-success:#22c55e;--host-error:#ef4444}}html,body{background:var(--host-bg);-webkit-text-size-adjust:100%}body{margin:0;padding:calc(18px + env(safe-area-inset-top)) 16px calc(48px + env(safe-area-inset-bottom));display:flex;justify-content:center}#app{width:100%;max-width:700px}</style>
+<style>
+#app{width:100%;max-width:700px;font-family:Inter,system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.5;color:var(--host-fg)}
+#app *{box-sizing:border-box}
+.hd{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.h1{font-size:20px;font-weight:500;letter-spacing:-.01em}
+.mut{color:var(--host-fg-muted);font-size:12px}
+.hdrActions{display:flex;gap:6px;flex-wrap:wrap}
+.btn{font:inherit;font-size:13px;font-weight:500;border:1px solid var(--host-border);background:var(--host-secondary);color:var(--host-secondary-fg);border-radius:8px;padding:6px 11px;cursor:pointer;white-space:nowrap}
+.btn:hover{border-color:var(--host-border-hover)}
+.btn.primary{background:var(--host-primary);color:#fff;border-color:transparent}
+.btn.ghost{background:transparent;color:var(--host-fg-muted)}
+.btn.sm{font-size:12px;padding:4px 9px;border-radius:6px}
+.btn.ok{background:var(--host-success);color:#fff;border-color:transparent}
+.btn.x{background:transparent;color:var(--host-fg-muted);border-color:transparent;padding:4px 7px;font-size:15px;line-height:1}
+.cap{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.cap input[type=text]{flex:1;min-width:170px}
+input,select,textarea{font:inherit;font-size:14px;background:var(--host-input);color:var(--host-fg);border:1px solid var(--host-border);border-radius:8px;padding:8px 10px;outline:none;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--host-border-hover)}
+input::placeholder,textarea::placeholder{color:var(--host-fg-muted)}
+select{cursor:pointer}
+textarea{resize:vertical;line-height:1.55}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tab{font-size:13px;padding:5px 12px;border-radius:999px;border:1px solid var(--host-border);color:var(--host-fg-muted);cursor:pointer;background:transparent;font-family:inherit}
+.tab.on{background:var(--host-primary);color:#fff;border-color:transparent}
+.card{background:var(--host-card);color:var(--host-card-fg);border:1px solid var(--host-border);border-radius:12px;padding:13px;margin-bottom:10px}
+.card.tight{padding:10px 12px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.row.wrap{flex-wrap:wrap}
+.h2{font-size:13px;font-weight:500;margin:18px 0 8px}
+.h2:first-child{margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:8px;margin-bottom:4px}
+.metric{background:var(--host-muted);border-radius:10px;padding:10px 12px}
+.metric .n{font-size:22px;font-weight:500;letter-spacing:-.02em}
+.metric .l{font-size:11px;color:var(--host-fg-muted);line-height:1.3}
+.badge{font-size:11px;font-weight:500;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chip{font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid var(--host-border);color:var(--host-fg-muted);cursor:pointer;background:transparent;font-family:inherit}
+.chip.on{background:var(--host-fg);color:var(--host-bg);border-color:transparent}
+.focus{border-left:3px solid var(--host-primary);padding-left:14px}
+.focus .big{font-size:17px;font-weight:500;line-height:1.35;margin:2px 0 3px}
+.item{border-bottom:1px solid var(--host-border);padding:9px 0}
+.item:last-child{border-bottom:none;padding-bottom:0}
+.item:first-child{padding-top:0}
+.due{color:var(--host-error);font-size:12px;font-weight:500}
+.soon{color:var(--host-fg-muted);font-size:12px}
+.ok{color:var(--host-success);font-size:12px;font-weight:500}
+.stack{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.grow{flex:1;min-width:130px}
+.empty{color:var(--host-fg-muted);font-size:13px;padding:6px 0}
+.note{font-size:11px;color:var(--host-fg-muted);margin-top:3px}
+.step{display:flex;gap:10px;margin-bottom:12px}
+.step .num{flex:0 0 22px;height:22px;border-radius:999px;background:var(--host-primary);color:#fff;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center}
+.pill{font-size:11px;color:var(--host-fg-muted)}
+hr{border:none;border-top:1px solid var(--host-border);margin:14px 0}
+details summary{cursor:pointer;font-size:13px;font-weight:500;color:var(--host-fg-muted);margin-bottom:10px;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary:before{content:"+ "}
+details[open] summary:before{content:"- "}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;background:var(--host-muted);padding:1px 5px;border-radius:4px}
+@media (max-width:520px){.btn{padding:9px 13px}.tab{padding:7px 14px}.chip{padding:6px 12px}input,select,textarea{font-size:16px}.grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="hd">
+    <div>
+      <div class="h1">Momentum</div>
+      <div class="mut">Nothing has to live in your head. It lives here and it waits for you.</div>
+    </div>
+    <div class="hdrActions">
+      <button class="btn ghost sm" id="expBtn">Back up</button>
+      <button class="btn ghost sm" id="copyBtn">Copy backup</button>
+      <button class="btn ghost sm" id="resBtn">Restore</button>
+    </div>
+  </div>
+
+  <div class="cap">
+    <input type="text" id="capInput" placeholder="Brain-dump it here, hit enter">
+    <select id="capCtx" style="width:auto"><option value="">no label</option><option>anywhere</option><option>desk</option><option>kitchen</option><option>bedroom</option><option>phone</option><option>out and about</option><option>errands</option><option>admin</option><option>money</option><option>health</option><option>writing</option><option>interview</option></select>
+    <button class="btn primary" id="capBtn">Capture</button>
+  </div>
+
+  <div class="tabs" id="tabs"><button class="tab" data-tab="focus">Focus</button><button class="tab" data-tab="jobs">Applications 2</button><button class="tab" data-tab="library">Reuse library</button><button class="tab" data-tab="routines">Routines</button><button class="tab" data-tab="labels">Labels</button><button class="tab" data-tab="log">Done log</button><button class="tab on" data-tab="phone">Phone</button></div>
+  <div id="panel"><div class="mut" style="margin-bottom:12px">Two minutes of setup and this stops living in a chat window and starts living on your home screen.</div><div class="card"><div style="font-weight:500;margin-bottom:8px">Step 1 · save the app file</div><div class="stack"><button class="btn primary" id="dlApp">Download momentum.html</button><button class="btn" id="cpApp">Copy the code instead</button></div><div class="note" style="margin-top:8px">If the download is blocked by the preview, use copy and paste it into a text editor, then save as momentum.html</div></div><div class="card"><div style="font-weight:500;margin-bottom:8px">Step 2 · put it somewhere your phone can reach</div><div class="step"><div class="num">a</div><div><div style="font-weight:500">Host it (best, about 5 min, free)</div><div class="mut">Make a free GitHub account, create a repository, upload the file, rename it to <code>index.html</code>, then Settings → Pages → deploy from the main branch. You get a URL like <code>yourname.github.io/momentum</code> that works on every device forever.</div></div></div><div class="step"><div class="num">b</div><div><div style="font-weight:500">Or just move the file to your phone</div><div class="mut">Email it to yourself, drop it in Drive, or AirDrop it. On Android, tap it in the Files app and open with Chrome. On iPhone this route is fussier, so prefer hosting.</div></div></div></div><div class="card"><div style="font-weight:500;margin-bottom:8px">Step 3 · make it an icon</div><div class="mut">Open the URL or file on your phone, then: iPhone — Share button, then Add to Home Screen. Android — the three dot menu, then Add to Home screen. It opens full screen with no browser bar.</div></div><div class="card"><div style="font-weight:500;margin-bottom:8px">Moving your data between phone and desktop</div><div class="mut">Each device keeps its own copy. Tap Copy backup on the device you typed it on, then open Restore on the other and paste.</div><div class="stack" style="margin-top:10px"><button class="btn" id="cpBtn2">Copy backup</button><button class="btn" id="resBtn2">Restore from text</button></div></div><div class="card"><div style="font-weight:500;margin-bottom:4px">Editing the code later</div><div class="mut">You will rarely need to. Labels, routines, applications and saved pieces are all editable inside the app. If you ever do want to change the look, open the file in any text editor, edit, and save.</div></div></div>
+
+  <datalist id="lblList"><option value="anywhere"></option><option value="desk"></option><option value="kitchen"></option><option value="bedroom"></option><option value="phone"></option><option value="out and about"></option><option value="errands"></option><option value="admin"></option><option value="money"></option><option value="health"></option><option value="writing"></option><option value="interview"></option></datalist>
+</div>
+<script>
+(function(){
+var KEY='momentum_v1';
+var DEFAULT_LABELS=['anywhere','desk','kitchen','bedroom','phone','out and about','errands','admin','money','health','writing','interview'];
+var STAGES=[['saved','Saved'],['applied','Applied'],['interview','Interview'],['offer','Offer'],['rejected','Closed']];
+var SC={saved:'#8a8f98',applied:'#3b82f6',interview:'#f59e0b',offer:'#22c55e',rejected:'#9ca3af'};
+
+function pad(n){return String(n).padStart(2,'0');}
+function uid(){return Math.random().toString(36).slice(2,9);}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function todayISO(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+function addDays(iso,n){var d=new Date(iso+'T12:00:00');d.setDate(d.getDate()+n);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+function diffDays(a,b){return Math.round((new Date(b+'T12:00:00')-new Date(a+'T12:00:00'))/86400000);}
+
+function seed(){
+  var t=todayISO();
+  return {
+    labels:DEFAULT_LABELS.map(function(n){return {id:uid(),name:n};}),
+    inbox:[],
+    jobs:[
+      {id:uid(),company:'Northwind logistics',role:'Operations coordinator',stage:'applied',tag:'desk',applied:addDays(t,-9),nextAction:'Follow up with the recruiter',nextDate:addDays(t,2),notes:'Referred by Dana. Mention the scheduling project.'},
+      {id:uid(),company:'Bluepeak health',role:'Program assistant',stage:'interview',tag:'interview',applied:addDays(t,-21),nextAction:'Prep the "tell me about a conflict" answer',nextDate:t,notes:'Panel of 3. They care a lot about the intake process.'},
+      {id:uid(),company:'Cedar county',role:'Admin specialist',stage:'saved',tag:'writing',applied:'',nextAction:'Tailor the cover letter and send',nextDate:addDays(t,4),notes:''}
+    ],
+    assets:[
+      {id:uid(),title:'Cover letter skeleton',category:'writing',body:'Dear [hiring manager],\n\nI am applying for [role] at [company]. What pulled me in was [one specific thing from the posting].\n\nIn my last role I [concrete thing you did] which [concrete result]. The part I actually enjoyed was [overlap with this job].\n\nI would like to talk about [specific problem this team has]. I am available at [times].\n\nThanks for reading,\n[your name]'},
+      {id:uid(),title:'Tell me about yourself (60 sec)',category:'interview',body:'Three beats, then stop.\n\n1. What I do now: "Right now I do [role], mostly [main responsibility]."\n2. How I got here: one line of history, no life story.\n3. Why here: "I am looking at this because [thing about them] lines up with [thing you are good at]."\n\nThen shut up and let them ask.'},
+      {id:uid(),title:'Why this company?',category:'interview',body:'Pick one real detail and build on it. Never say "great culture."\n\n"I noticed [specific thing - a program, a post, a product line]. At my last job I worked on something close to that, so I know [insight]. That is why I am here instead of sending out 40 generic applications."'},
+      {id:uid(),title:'Salary expectations',category:'interview',body:'"Based on what this role usually pays around here and what I bring, I am looking at [range]. But I care more about the whole package, so if there is room I am happy to work with it."\n\nIf pushed for a number first: give a range, never a single number.'},
+      {id:uid(),title:'My best resume bullets',category:'writing',body:'Paste your strongest 6-10 bullets here once, then reuse and tweak them forever instead of rewriting from a blank page.\n\n- Did X, which improved Y by Z\n- Ran A for B people\n- Fixed C by doing D'},
+      {id:uid(),title:'Questions I ask them',category:'interview',body:'- What does a good first 90 days look like?\n- What is the most annoying part of this job right now?\n- Who would I work with most, and what do they need from me?\n\nAsking these makes you look like you already work there.'}
+    ],
+    routines:[
+      {id:uid(),name:'Change the fly traps',context:'bedroom',interval:60,lastDone:addDays(t,-74),notes:'They are above the bed. That is why you keep forgetting.'},
+      {id:uid(),name:'Take the bins out',context:'kitchen',interval:7,lastDone:addDays(t,-3),notes:''},
+      {id:uid(),name:'Change the bed sheets',context:'bedroom',interval:14,lastDone:addDays(t,-16),notes:''},
+      {id:uid(),name:'Water the plants',context:'anywhere',interval:7,lastDone:addDays(t,-2),notes:''},
+      {id:uid(),name:'Check smoke alarm battery',context:'anywhere',interval:180,lastDone:addDays(t,-150),notes:''},
+      {id:uid(),name:'Reply to that text from Sam',context:'phone',interval:3,lastDone:addDays(t,-4),notes:''}
+    ],
+    wins:[]
+  };
+}
+
+var S;
+try{var raw=localStorage.getItem(KEY);S=raw?JSON.parse(raw):seed();}catch(e){S=seed();}
+if(!S||!S.routines)S=seed();
+if(!S.labels||!S.labels.length)S.labels=DEFAULT_LABELS.map(function(n){return {id:uid(),name:n};});
+S.assets.forEach(function(a){if(a.category===undefined)a.category='';});
+S.jobs.forEach(function(j){if(j.tag===undefined)j.tag='';});
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+var tab='focus', ctx='all', focusIdx=0, restoring=false;
+
+function labelNames(){return S.labels.map(function(l){return l.name;});}
+function ensureLabel(name){
+  name=String(name||'').trim();if(!name)return;
+  if(!S.labels.some(function(l){return l.name===name;})){S.labels.push({id:uid(),name:name});save();}
+}
+function usesOf(name){
+  var n=0;
+  S.routines.forEach(function(r){if(r.context===name)n++;});
+  S.jobs.forEach(function(j){if(j.tag===name)n++;});
+  S.assets.forEach(function(a){if(a.category===name)n++;});
+  S.inbox.forEach(function(i){if(i.ctx===name)n++;});
+  return n;
+}
+function usedLabels(){
+  var seen={},out=[];
+  S.routines.forEach(function(r){if(r.context)seen[r.context]=1;});
+  S.assets.forEach(function(a){if(a.category)seen[a.category]=1;});
+  S.jobs.forEach(function(j){if(j.tag)seen[j.tag]=1;});
+  S.inbox.forEach(function(i){if(i.ctx)seen[i.ctx]=1;});
+  S.labels.forEach(function(l){if(seen[l.name])out.push(l.name);});
+  return out;
+}
+
+function dueInfo(r){return {next:addDays(r.lastDone||todayISO(),r.interval||7),over:diffDays(addDays(r.lastDone||todayISO(),r.interval||7),todayISO())};}
+function isDue(r){return dueInfo(r).over>=0;}
+function visible(r){return ctx==='all'||r.context===ctx;}
+
+function logWin(text,kind){
+  S.wins.unshift({id:uid(),text:text,kind:kind||'task',at:todayISO()});
+  if(S.wins.length>300)S.wins.length=300;
+}
+function weekWins(){var t=todayISO();return S.wins.filter(function(w){return diffDays(w.at,t)<=7;}).length;}
+
+function queue(){
+  var t=todayISO(),out=[];
+  S.routines.forEach(function(r){
+    if(!isDue(r))return;
+    var o=dueInfo(r).over;
+    out.push({type:'routine',id:r.id,label:r.name,sub:(o>0?('overdue by '+o+' day'+(o>1?'s':'')):'due today')+(r.context?' · '+r.context:''),score:1000+o});
+  });
+  S.jobs.forEach(function(j){
+    if(!j.nextAction||!j.nextDate)return;
+    var d=diffDays(t,j.nextDate);
+    if(d>0)return;
+    out.push({type:'job',id:j.id,label:j.nextAction,sub:(d<0?('overdue by '+(-d)+' day'+((-d)>1?'s':'')):'due today')+' · '+j.role+' at '+j.company,score:500+(-d)});
+  });
+  S.inbox.forEach(function(i){out.push({type:'inbox',id:i.id,label:i.text,sub:'unsorted · file it or bin it',score:50});});
+  out.sort(function(a,b){return b.score-a.score;});
+  return out;
+}
+
+function complete(type,id){
+  if(type==='routine'){
+    var r=S.routines.find(function(x){return x.id===id;});
+    if(r){r.lastDone=todayISO();logWin('Did: '+r.name,'routine');}
+  } else if(type==='job'){
+    var j=S.jobs.find(function(x){return x.id===id;});
+    if(j){logWin('Job step: '+j.nextAction+' ('+j.company+')','job');j.nextAction='';j.nextDate='';}
+  } else if(type==='inbox'){
+    S.inbox=S.inbox.filter(function(x){return x.id!==id;});
+    logWin('Sorted an inbox item','inbox');
+  }
+  focusIdx=0;save();render();
+}
+
+var panel=document.getElementById('panel');
+var tabsEl=document.getElementById('tabs');
+
+function renderTabs(){
+  var live=S.jobs.filter(function(j){return j.stage!=='rejected'&&j.stage!=='saved';}).length;
+  var defs=[['focus','Focus'],['jobs','Applications'+(live?' '+live:'')],['library','Reuse library'],['routines','Routines'],['labels','Labels'],['log','Done log'],['phone','Phone']];
+  tabsEl.innerHTML=defs.map(function(d){return '<button class="tab'+(tab===d[0]?' on':'')+'" data-tab="'+d[0]+'">'+esc(d[1])+'</button>';}).join('');
+}
+
+function badge(stage){
+  var label='Saved';STAGES.forEach(function(s){if(s[0]===stage)label=s[1];});
+  return '<span class="badge" style="background:'+SC[stage]+'22;color:'+SC[stage]+'">'+label+'</span>';
+}
+function chipRow(){
+  var u=usedLabels();
+  return '<div class="chips"><button class="chip'+(ctx==='all'?' on':'')+'" data-ctx="all">everything</button>'
+   +u.map(function(c){return '<button class="chip'+(ctx===c?' on':'')+'" data-ctx="'+esc(c)+'">'+esc(c)+'</button>';}).join('')
+   +'</div>';
+}
+function labelOpts(sel,blank){
+  var h=(blank?'<option value=""'+(!sel?' selected':'')+'>'+(blank||'')+'</option>':'');
+  return h+S.labels.map(function(l){return '<option'+(sel===l.name?' selected':'')+'>'+esc(l.name)+'</option>';}).join('');
+}
+
+function renderFocus(){
+  var q=queue(),h='';
+  var applied=S.jobs.filter(function(j){return j.stage!=='saved';}).length;
+  var live=S.jobs.filter(function(j){return j.stage==='applied'||j.stage==='interview';}).length;
+  var ivs=S.jobs.filter(function(j){return j.stage==='interview';}).length;
+  var dueCount=S.routines.filter(isDue).length;
+
+  h+='<div class="grid">'
+   +'<div class="metric"><div class="n">'+applied+'</div><div class="l">applications sent<br>you are not starting over</div></div>'
+   +'<div class="metric"><div class="n">'+live+'</div><div class="l">still live right now</div></div>'
+   +'<div class="metric"><div class="n">'+ivs+'</div><div class="l">interviews booked</div></div>'
+   +'<div class="metric"><div class="n">'+weekWins()+'</div><div class="l">things done this week</div></div>'
+   +'</div>';
+
+  h+='<div class="h2">The one thing</div>';
+  if(!q.length){
+    h+='<div class="card focus"><div class="big">Board is clear.</div><div class="mut">Capture whatever is nagging you below, or go be a person for a while.</div></div>';
+  } else {
+    var item=q[Math.min(focusIdx,q.length-1)],rest=q.length-1;
+    h+='<div class="card focus">'
+      +'<div class="mut">'+esc(item.sub)+'</div>'
+      +'<div class="big">'+esc(item.label)+'</div>'
+      +'<div class="stack" style="margin-top:10px">'
+      +'<button class="btn ok" data-act="complete" data-type="'+item.type+'" data-id="'+item.id+'">Done</button>'
+      +'<button class="btn" data-act="skip">Not this one</button>'
+      +(rest?'<span class="mut">'+(rest+1)+' things in the queue</span>':'<span class="mut">last one in the queue</span>')
+      +'</div></div>';
+  }
+
+  h+='<div class="h2">Overdue routines'+(dueCount?' ('+dueCount+')':'')+'</div>';
+  var dr=S.routines.filter(isDue).sort(function(a,b){return dueInfo(b).over-dueInfo(a).over;});
+  if(!dr.length)h+='<div class="empty">Nothing overdue. Rare and beautiful.</div>';
+  dr.forEach(function(r){
+    var o=dueInfo(r).over;
+    h+='<div class="card tight"><div class="row wrap"><div class="grow"><div style="font-weight:500">'+esc(r.name)+'</div>'
+      +'<div class="'+(o>0?'due':'soon')+'">'+(o>0?'overdue by '+o+' day'+(o>1?'s':''):'due today')+' · every '+r.interval+' days · '+esc(r.context)+'</div>'
+      +(r.notes?'<div class="note">'+esc(r.notes)+'</div>':'')
+      +'</div><button class="btn sm ok" data-act="complete" data-type="routine" data-id="'+r.id+'">Done</button></div></div>';
+  });
+
+  if(S.inbox.length){
+    h+='<div class="h2">Inbox ('+S.inbox.length+')</div>';
+    S.inbox.forEach(function(i){
+      h+='<div class="card tight"><div class="row wrap"><div class="grow">'+esc(i.text)+(i.ctx?' <span class="pill">'+esc(i.ctx)+'</span>':'')+'</div>'
+        +'<div class="stack">'
+        +'<button class="btn sm" data-act="inbox-to" data-kind="job" data-id="'+i.id+'">to application</button>'
+        +'<button class="btn sm" data-act="inbox-to" data-kind="routine" data-id="'+i.id+'">to routine</button>'
+        +'<button class="btn sm x" data-act="inbox-del" data-id="'+i.id+'">×</button>'
+        +'</div></div></div>';
+    });
+  }
+  return h;
+}
+
+function renderJobs(){
+  var t=todayISO();
+  var h='<details><summary>Add an application</summary><div class="card">'
+    +'<div class="stack" style="margin-bottom:8px"><input type="text" id="jCompany" class="grow" placeholder="Company"><input type="text" id="jRole" class="grow" placeholder="Role"></div>'
+    +'<div class="stack" style="margin-bottom:8px"><input type="text" id="jNext" class="grow" placeholder="Next action (the next physical step)"><input type="date" id="jDate" style="width:auto"></div>'
+    +'<input list="lblList" id="jTag" placeholder="Label (type a new one and it saves)" style="margin-bottom:8px">'
+    +'<textarea id="jNotes" rows="2" placeholder="Notes: who referred you, what you sent, what they care about"></textarea>'
+    +'<div style="margin-top:8px"><button class="btn primary" id="jAdd">Add it</button></div>'
+    +'</div></details>';
+
+  var order={interview:0,offer:1,applied:2,saved:3,rejected:4};
+  var list=S.jobs.slice().sort(function(a,b){
+    if(order[a.stage]!==order[b.stage])return order[a.stage]-order[b.stage];
+    return (a.nextDate||'9999')<(b.nextDate||'9999')?-1:1;
+  });
+  if(!list.length)h+='<div class="empty">No applications yet. Add one above.</div>';
+
+  list.forEach(function(j){
+    var late=j.nextDate&&j.nextDate<=t;
+    h+='<div class="card">'
+      +'<div class="row wrap" style="margin-bottom:8px">'
+      +'<div class="grow"><div style="font-weight:500;font-size:15px">'+esc(j.role||'Untitled role')+'</div>'
+      +'<div class="mut">'+esc(j.company||'Unknown company')+(j.applied?' · applied '+j.applied:'')+'</div></div>'
+      +badge(j.stage)
+      +'<button class="btn sm x" data-act="job-del" data-id="'+j.id+'">×</button>'
+      +'</div>'
+      +'<div class="stack">'
+      +'<select style="width:auto" data-f="jobs:'+j.id+':stage">'
+      +STAGES.map(function(s){return '<option value="'+s[0]+'"'+(j.stage===s[0]?' selected':'')+'>'+s[1]+'</option>';}).join('')
+      +'</select>'
+      +'<input list="lblList" style="width:auto" placeholder="Label" value="'+esc(j.tag)+'" data-f="jobs:'+j.id+':tag">'
+      +'<input type="text" class="grow" placeholder="Next action" value="'+esc(j.nextAction)+'" data-f="jobs:'+j.id+':nextAction">'
+      +'<input type="date" style="width:auto" value="'+esc(j.nextDate)+'" data-f="jobs:'+j.id+':nextDate">'
+      +'</div>'
+      +(j.nextAction&&j.nextDate?'<div class="'+(late?'due':'soon')+'" style="margin-top:6px">'+(late?'next step is due':'next step '+j.nextDate)+'</div>':'')
+      +'<textarea rows="2" style="margin-top:8px" placeholder="Notes" data-f="jobs:'+j.id+':notes">'+esc(j.notes)+'</textarea>'
+      +'</div>';
+  });
+  return h;
+}
+
+function renderLibrary(){
+  var h='<div class="mut" style="margin-bottom:10px">This is the whole point. Write it once, paste it forever. Every new application starts from something, not from nothing.</div>';
+  h+=chipRow();
+  h+='<details><summary>Add a reusable piece</summary><div class="card">'
+    +'<input type="text" id="aTitle" placeholder="Title (e.g. cover letter for warehouse roles)" style="margin-bottom:8px">'
+    +'<input list="lblList" id="aCat" placeholder="Label (e.g. writing, interview)" style="margin-bottom:8px">'
+    +'<textarea id="aBody" rows="5" placeholder="Paste the text here"></textarea>'
+    +'<div style="margin-top:8px"><button class="btn primary" id="aAdd">Save it</button></div>'
+    +'</div></details>';
+  var list=S.assets.filter(function(a){return ctx==='all'||a.category===ctx;});
+  if(!list.length)h+='<div class="empty">Nothing in this label.</div>';
+  list.forEach(function(a){
+    h+='<div class="card">'
+      +'<div class="row wrap" style="margin-bottom:6px">'
+      +'<input type="text" class="grow" value="'+esc(a.title)+'" data-f="assets:'+a.id+':title" style="font-weight:500">'
+      +'<input list="lblList" style="width:auto" placeholder="Label" value="'+esc(a.category)+'" data-f="assets:'+a.id+':category">'
+      +'<button class="btn sm" data-act="copy" data-id="'+a.id+'">Copy</button>'
+      +'<button class="btn sm x" data-act="asset-del" data-id="'+a.id+'">×</button>'
+      +'</div>'
+      +'<textarea rows="6" data-f="assets:'+a.id+':body">'+esc(a.body)+'</textarea>'
+      +'</div>';
+  });
+  return h;
+}
+
+function renderRoutines(){
+  var h='<div class="mut" style="margin-bottom:10px">Tag each one with where you are when you actually notice it. Then when you are in bed, tap "bedroom" and the fly traps show up in front of you instead of staying a vague guilt feeling.</div>';
+  h+=chipRow();
+  h+='<details><summary>Add a routine</summary><div class="card">'
+    +'<input type="text" id="rName" placeholder="What is it?" style="margin-bottom:8px">'
+    +'<div class="stack" style="margin-bottom:8px"><input list="lblList" id="rCtx" class="grow" placeholder="Label (type a new one and it saves)">'
+    +'<label class="mut" style="display:flex;align-items:center;gap:6px;white-space:nowrap">every <input type="number" id="rInt" value="30" min="1" style="width:70px"> days</label></div>'
+    +'<input type="text" id="rNotes" placeholder="Where is the thing? Why do you forget it?">'
+    +'<div style="margin-top:8px"><button class="btn primary" id="rAdd">Add it</button></div>'
+    +'</div></details>';
+  var list=S.routines.filter(visible).sort(function(a,b){return dueInfo(b).over-dueInfo(a).over;});
+  if(!list.length)h+='<div class="empty">Nothing in this label.</div>';
+  list.forEach(function(r){
+    var d=dueInfo(r);
+    h+='<div class="card tight">'
+      +'<div class="row wrap" style="margin-bottom:6px">'
+      +'<input type="text" class="grow" value="'+esc(r.name)+'" data-f="routines:'+r.id+':name" style="font-weight:500">'
+      +'<button class="btn sm ok" data-act="complete" data-type="routine" data-id="'+r.id+'">Done</button>'
+      +'<button class="btn sm x" data-act="routine-del" data-id="'+r.id+'">×</button>'
+      +'</div>'
+      +'<div class="stack">'
+      +'<select style="width:auto" data-f="routines:'+r.id+':context">'+labelOpts(r.context)+'</select>'
+      +'<label class="mut" style="display:flex;align-items:center;gap:5px">every <input type="number" style="width:64px" value="'+r.interval+'" data-f="routines:'+r.id+':interval"> days</label>'
+      +'<span class="'+(d.over>0?'due':(d.over===0?'due':'soon'))+'">'+(d.over>0?'overdue by '+d.over+' day'+(d.over>1?'s':''):(d.over===0?'due today':'due in '+(-d.over)+' days'))+'</span>'
+      +'</div>'
+      +'<input type="text" style="margin-top:6px" placeholder="Where is it / why you forget" value="'+esc(r.notes)+'" data-f="routines:'+r.id+':notes">'
+      +'</div>';
+  });
+  return h;
+}
+
+function renderLabels(){
+  var h='<div class="mut" style="margin-bottom:12px">Labels are your vocabulary. Anywhere you see a field with a list, you can just type something new and it saves itself. This tab is for tidying up.</div>';
+  h+='<div class="card">'
+    +'<div style="font-weight:500;margin-bottom:8px">Rename one</div>'
+    +'<div class="mut" style="margin-bottom:10px">Rename here and every routine, application, and saved piece using it updates at once. Nothing gets orphaned.</div>';
+  S.labels.forEach(function(l){
+    var n=usesOf(l.name);
+    h+='<div class="row wrap" style="margin-bottom:8px">'
+      +'<input type="text" class="grow" value="'+esc(l.name)+'" data-f="labels:'+l.id+':name">'
+      +'<span class="pill">used '+n+' time'+(n===1?'':'s')+'</span>'
+      +'<button class="btn sm x" data-act="label-del" data-id="'+l.id+'">×</button>'
+      +'</div>';
+  });
+  h+='<div class="stack" style="margin-top:4px"><input type="text" id="lNew" class="grow" placeholder="Add a label (e.g. car, garden, night shift)"><button class="btn primary" id="lAdd">Add</button></div>'
+    +'</div>';
+  h+='<div class="card"><div style="font-weight:500;margin-bottom:4px">Deleting a label</div>'
+    +'<div class="mut">Deleting never deletes the items. Routines fall back to anywhere, and the rest just lose the tag.</div></div>';
+  return h;
+}
+
+function renderLog(){
+  var h='<div class="mut" style="margin-bottom:10px">Proof you are moving. Every time you tick something off it lands here, so the "I have done nothing" feeling has to argue with evidence.</div>';
+  h+='<div class="stack" style="margin-bottom:12px"><input type="text" id="wText" class="grow" placeholder="Something you did (even small)"><button class="btn primary" id="wAdd">Log it</button></div>';
+  if(!S.wins.length)h+='<div class="empty">Nothing logged yet.</div>';
+  var last='';
+  S.wins.forEach(function(w){
+    if(w.at!==last){h+='<div class="h2">'+w.at+'</div>';last=w.at;}
+    h+='<div class="item"><div class="row"><span>'+esc(w.text)+'</span><button class="btn sm x" data-act="win-del" data-id="'+w.id+'">×</button></div></div>';
+  });
+  return h;
+}
+
+function renderPhone(){
+  var h='<div class="mut" style="margin-bottom:12px">Two minutes of setup and this stops living in a chat window and starts living on your home screen.</div>';
+  h+='<div class="card"><div style="font-weight:500;margin-bottom:8px">Step 1 · save the app file</div>'
+   +'<div class="stack"><button class="btn primary" id="dlApp">Download momentum.html</button>'
+   +'<button class="btn" id="cpApp">Copy the code instead</button></div>'
+   +'<div class="note" style="margin-top:8px">If the download is blocked by the preview, use copy and paste it into a text editor, then save as momentum.html</div></div>';
+  h+='<div class="card"><div style="font-weight:500;margin-bottom:8px">Step 2 · put it somewhere your phone can reach</div>'
+   +'<div class="step"><div class="num">a</div><div><div style="font-weight:500">Host it (best, about 5 min, free)</div>'
+   +'<div class="mut">Make a free GitHub account, create a repository, upload the file, rename it to <code>index.html</code>, then Settings → Pages → deploy from the main branch. You get a URL like <code>yourname.github.io/momentum</code> that works on every device forever.</div></div></div>'
+   +'<div class="step"><div class="num">b</div><div><div style="font-weight:500">Or just move the file to your phone</div>'
+   +'<div class="mut">Email it to yourself, drop it in Drive, or AirDrop it. On Android, tap it in the Files app and open with Chrome. On iPhone this route is fussier, so prefer hosting.</div></div></div></div>';
+  h+='<div class="card"><div style="font-weight:500;margin-bottom:8px">Step 3 · make it an icon</div>'
+   +'<div class="mut">Open the URL or file on your phone, then: iPhone — Share button, then Add to Home Screen. Android — the three dot menu, then Add to Home screen. It opens full screen with no browser bar.</div></div>';
+  h+='<div class="card"><div style="font-weight:500;margin-bottom:8px">Moving your data between phone and desktop</div>'
+   +'<div class="mut">Each device keeps its own copy. Tap Copy backup on the device you typed it on, then open Restore on the other and paste.</div>'
+   +'<div class="stack" style="margin-top:10px"><button class="btn" id="cpBtn2">Copy backup</button><button class="btn" id="resBtn2">Restore from text</button></div></div>';
+  h+='<div class="card"><div style="font-weight:500;margin-bottom:4px">Editing the code later</div>'
+   +'<div class="mut">You will rarely need to. Labels, routines, applications and saved pieces are all editable inside the app. If you ever do want to change the look, open the file in any text editor, edit, and save.</div></div>';
+  return h;
+}
+
+function render(){
+  renderTabs();
+  document.getElementById('lblList').innerHTML=S.labels.map(function(l){return '<option value="'+esc(l.name)+'">';}).join('');
+  var pre='';
+  if(restoring){
+    pre='<div class="card" style="border-color:var(--host-primary)">'
+      +'<div style="font-weight:500;margin-bottom:6px">Paste a backup</div>'
+      +'<textarea id="resBox" rows="5" placeholder="Paste the backup text here"></textarea>'
+      +'<div class="stack" style="margin-top:8px"><button class="btn primary" id="resGo">Restore it</button><button class="btn" id="resCancel">Cancel</button>'
+      +'<span class="mut" id="resMsg"></span></div></div>';
+  }
+  var body='';
+  if(tab==='focus')body=renderFocus();
+  else if(tab==='jobs')body=renderJobs();
+  else if(tab==='library')body=renderLibrary();
+  else if(tab==='routines')body=renderRoutines();
+  else if(tab==='labels')body=renderLabels();
+  else if(tab==='phone')body=renderPhone();
+  else body=renderLog();
+  panel.innerHTML=pre+body;
+}
+
+tabsEl.addEventListener('click',function(e){
+  var b=e.target.closest('[data-tab]');if(!b)return;
+  tab=b.dataset.tab;render();
+});
+
+panel.addEventListener('click',function(e){
+  var b=e.target.closest('[data-act]');
+  if(b){
+    var a=b.dataset.act,id=b.dataset.id;
+    if(a==='complete')complete(b.dataset.type,id);
+    else if(a==='skip'){focusIdx++;render();}
+    else if(a==='job-del'){if(confirm('Remove this application?')){S.jobs=S.jobs.filter(function(x){return x.id!==id;});save();render();}}
+    else if(a==='routine-del'){S.routines=S.routines.filter(function(x){return x.id!==id;});save();render();}
+    else if(a==='asset-del'){S.assets=S.assets.filter(function(x){return x.id!==id;});save();render();}
+    else if(a==='win-del'){S.wins=S.wins.filter(function(x){return x.id!==id;});save();render();}
+    else if(a==='inbox-del'){S.inbox=S.inbox.filter(function(x){return x.id!==id;});save();render();}
+    else if(a==='label-del'){
+      var lab=S.labels.find(function(x){return x.id===id;});if(!lab)return;
+      S.routines.forEach(function(r){if(r.context===lab.name)r.context='anywhere';});
+      S.jobs.forEach(function(j){if(j.tag===lab.name)j.tag='';});
+      S.assets.forEach(function(x){if(x.category===lab.name)x.category='';});
+      S.inbox.forEach(function(i){if(i.ctx===lab.name)i.ctx='';});
+      if(ctx===lab.name)ctx='all';
+      S.labels=S.labels.filter(function(x){return x.id!==id;});
+      save();render();
+    }
+    else if(a==='copy'){
+      var asset=S.assets.find(function(x){return x.id===id;});
+      if(asset){var lbl=b.textContent;copyText(asset.body,function(){b.textContent='Copied';setTimeout(function(){b.textContent=lbl;},1200);});}
+    }
+    else if(a==='inbox-to'){
+      var item=S.inbox.find(function(x){return x.id===id;});if(!item)return;
+      if(b.dataset.kind==='job'){
+        S.jobs.unshift({id:uid(),company:'',role:item.text,stage:'saved',tag:item.ctx||'',applied:'',nextAction:'',nextDate:'',notes:''});
+        tab='jobs';
+      } else {
+        S.routines.unshift({id:uid(),name:item.text,context:item.ctx||'anywhere',interval:30,lastDone:todayISO(),notes:''});
+        tab='routines';
+      }
+      S.inbox=S.inbox.filter(function(x){return x.id!==id;});
+      save();render();
+    }
+    return;
+  }
+  var c=e.target.closest('[data-ctx]');
+  if(c){ctx=c.dataset.ctx;render();}
+  if(e.target.id==='jAdd'){
+    var co=document.getElementById('jCompany').value.trim(),ro=document.getElementById('jRole').value.trim();
+    if(!co&&!ro)return;
+    var tg=document.getElementById('jTag').value.trim();ensureLabel(tg);
+    S.jobs.unshift({id:uid(),company:co,role:ro,stage:'saved',tag:tg,applied:'',nextAction:document.getElementById('jNext').value.trim(),nextDate:document.getElementById('jDate').value,notes:document.getElementById('jNotes').value.trim()});
+    save();render();
+  }
+  if(e.target.id==='aAdd'){
+    var ti=document.getElementById('aTitle').value.trim(),bo=document.getElementById('aBody').value;
+    if(!ti&&!bo)return;
+    var ca=document.getElementById('aCat').value.trim();ensureLabel(ca);
+    S.assets.unshift({id:uid(),title:ti||'Untitled',category:ca,body:bo});
+    save();render();
+  }
+  if(e.target.id==='rAdd'){
+    var n=document.getElementById('rName').value.trim();if(!n)return;
+    var cx=document.getElementById('rCtx').value.trim()||'anywhere';ensureLabel(cx);
+    S.routines.unshift({id:uid(),name:n,context:cx,interval:parseInt(document.getElementById('rInt').value,10)||30,lastDone:todayISO(),notes:document.getElementById('rNotes').value.trim()});
+    save();render();
+  }
+  if(e.target.id==='wAdd'){
+    var w=document.getElementById('wText').value.trim();if(!w)return;
+    logWin(w,'manual');save();render();
+  }
+  if(e.target.id==='lAdd'){
+    var ln=document.getElementById('lNew').value.trim();if(!ln)return;
+    ensureLabel(ln);save();render();
+  }
+  if(e.target.id==='dlApp')downloadApp();
+  if(e.target.id==='cpApp'){var bl=document.getElementById('cpApp');copyText(buildApp(),function(){bl.textContent='Code copied';setTimeout(function(){bl.textContent='Copy the code instead';},1500);});}
+  if(e.target.id==='cpBtn2'){var b2=document.getElementById('cpBtn2');copyText(JSON.stringify(S),function(){b2.textContent='Copied';setTimeout(function(){b2.textContent='Copy backup';},1200);});}
+  if(e.target.id==='resBtn2'){restoring=true;render();}
+  if(e.target.id==='resGo'){
+    try{
+      var d=JSON.parse(document.getElementById('resBox').value.trim());
+      if(d&&d.routines){S=d;if(!S.labels||!S.labels.length)S.labels=DEFAULT_LABELS.map(function(n){return {id:uid(),name:n};});save();restoring=false;render();}
+      else document.getElementById('resMsg').textContent='That does not look like a backup.';
+    }catch(err){document.getElementById('resMsg').textContent='Could not read that text.';}
+  }
+  if(e.target.id==='resCancel'){restoring=false;render();}
+});
+
+panel.addEventListener('input',function(e){
+  var t=e.target;if(!t.dataset.f)return;
+  var p=t.dataset.f.split(':');
+  var rec=(S[p[0]]||[]).find(function(x){return x.id===p[1];});
+  if(!rec)return;
+  rec[p[2]]=(p[2]==='interval')?(parseInt(t.value,10)||1):t.value;
+  save();
+});
+panel.addEventListener('change',function(e){
+  var t=e.target;if(!t.dataset.f)return;
+  var p=t.dataset.f.split(':');
+  var rec=(S[p[0]]||[]).find(function(x){return x.id===p[1];});
+  if(!rec)return;
+  var old=rec[p[2]];
+  rec[p[2]]=(p[2]==='interval')?(parseInt(t.value,10)||1):t.value;
+  if(p[0]==='labels'&&p[2]==='name'){
+    var nn=String(rec.name).trim()||old;
+    S.routines.forEach(function(r){if(r.context===old)r.context=nn;});
+    S.jobs.forEach(function(j){if(j.tag===old)j.tag=nn;});
+    S.assets.forEach(function(x){if(x.category===old)x.category=nn;});
+    S.inbox.forEach(function(i){if(i.ctx===old)i.ctx=nn;});
+    if(ctx===old)ctx=nn;
+    rec.name=nn;
+  }
+  if(p[0]==='routines'&&p[2]==='context')ensureLabel(rec.context);
+  if(p[0]==='jobs'&&p[2]==='tag')ensureLabel(rec.tag);
+  if(p[0]==='assets'&&p[2]==='category')ensureLabel(rec.category);
+  if(p[0]==='jobs'&&p[2]==='stage'){
+    if(t.value==='applied'&&!rec.applied)rec.applied=todayISO();
+    logWin('Moved '+rec.company+' to '+t.value,'job');
+  }
+  save();render();
+});
+
+function copyText(text,cb){
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(cb,function(){fb(text,cb);});}
+  else fb(text,cb);
+}
+function fb(text,cb){
+  var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta);if(cb)cb();
+}
+
+var PALETTE=':root{--host-bg:#ffffff;--host-fg:#111827;--host-fg-muted:#6b7280;--host-card:#f9fafb;--host-card-fg:#111827;--host-input:#ffffff;--host-muted:#f3f4f6;--host-border:#e5e7eb;--host-border-hover:#d1d5db;--host-primary:#3b82f6;--host-secondary:#f3f4f6;--host-secondary-fg:#111827;--host-success:#22c55e;--host-error:#ef4444}'
+ +'@media (prefers-color-scheme:dark){:root{--host-bg:#0b0b0d;--host-fg:#f4f4f5;--host-fg-muted:#9ca3af;--host-card:#17171a;--host-card-fg:#f4f4f5;--host-input:#1c1c20;--host-muted:#202024;--host-border:#2a2a30;--host-border-hover:#3f3f46;--host-primary:#3b82f6;--host-secondary:#202024;--host-secondary-fg:#f4f4f5;--host-success:#22c55e;--host-error:#ef4444}}'
+ +'html,body{background:var(--host-bg);-webkit-text-size-adjust:100%}'
+ +'body{margin:0;padding:calc(18px + env(safe-area-inset-top)) 16px calc(48px + env(safe-area-inset-bottom));display:flex;justify-content:center}'
+ +'#app{width:100%;max-width:700px}';
+
+function buildApp(){
+  var css=document.getElementById('appcss').textContent;
+  var js=document.getElementById('appjs').textContent;
+  var bodyHtml=document.getElementById('app').outerHTML;
+  var icon='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="112" fill="#3b82f6"/><path d="M132 322 L256 158 L380 322" fill="none" stroke="#fff" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/><circle cx="256" cy="392" r="30" fill="#fff"/></svg>';
+  var iconUri='data:image/svg+xml,'+encodeURIComponent(icon);
+  var manifest=JSON.stringify({name:'Momentum',short_name:'Momentum',start_url:'.',display:'standalone',background_color:'#0b0b0d',theme_color:'#3b82f6',icons:[{src:iconUri,sizes:'512x512',type:'image/svg+xml',purpose:'any'}]});
+  var manifestUri='data:application/manifest+json,'+encodeURIComponent(manifest);
+  return '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
+   +'<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n'
+   +'<title>Momentum</title>\n'
+   +'<meta name="theme-color" content="#3b82f6">\n'
+   +'<meta name="apple-mobile-web-app-capable" content="yes">\n'
+   +'<meta name="mobile-web-app-capable" content="yes">\n'
+   +'<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">\n'
+   +'<meta name="apple-mobile-web-app-title" content="Momentum">\n'
+   +'<link rel="apple-touch-icon" href="'+iconUri+'">\n<link rel="icon" href="'+iconUri+'">\n'
+   +'<link rel="manifest" href="'+manifestUri+'">\n'
+   +'<style>'+PALETTE+'</style>\n<style>'+css+'</style>\n</head>\n<body>\n'
+   +bodyHtml+'\n<script>'+js+'<\/script>\n</body>\n</html>';
+}
+function downloadApp(){
+  try{
+    var blob=new Blob([buildApp()],{type:'text/html'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='momentum.html';
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(a.href);},4000);
+  }catch(e){alert('Download was blocked. Use "Copy the code instead".');}
+}
+
+document.getElementById('expBtn').addEventListener('click',function(){
+  var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='momentum-backup-'+todayISO()+'.json';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+});
+document.getElementById('copyBtn').addEventListener('click',function(){
+  var b=document.getElementById('copyBtn');
+  copyText(JSON.stringify(S),function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy backup';},1200);});
+});
+document.getElementById('resBtn').addEventListener('click',function(){restoring=!restoring;render();});
+
+var capInput=document.getElementById('capInput');
+function capture(){
+  var v=capInput.value.trim();if(!v)return;
+  S.inbox.unshift({id:uid(),text:v,ctx:document.getElementById('capCtx').value,at:todayISO()});
+  capInput.value='';save();focusIdx=0;render();
+}
+document.getElementById('capBtn').addEventListener('click',capture);
+capInput.addEventListener('keydown',function(e){if(e.key==='Enter')capture();});
+
+function refreshCapCtx(){
+  var sel=document.getElementById('capCtx').value;
+  document.getElementById('capCtx').innerHTML='<option value="">no label</option>'+S.labels.map(function(l){return '<option'+(sel===l.name?' selected':'')+'>'+esc(l.name)+'</option>';}).join('');
+}
+var origRender=render;
+render=function(){refreshCapCtx();origRender();};
+
+render();
+})();
+</script>
+</body>
+</html>
